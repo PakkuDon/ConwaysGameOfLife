@@ -1,5 +1,6 @@
 describe('Automaton', function() {
     var Automaton = require('../js/Automaton.js');
+    var Cell = require('../js/Cell.js');
     var automaton;
 
     beforeEach(function() {
