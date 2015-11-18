@@ -1,6 +1,7 @@
 function Automaton(width, height) {
     if (typeof require !== 'undefined') {
         Cell = require('../js/Cell.js');
+        Patterns = require('../js/Patterns.js');
     }
 
     var self = this;
@@ -61,6 +62,18 @@ function Automaton(width, height) {
         }
         else {
             return value < min ? max : min;
+        }
+    }
+
+    // Update cells over an area starting from given x,y to match
+    // state defined in pattern
+    this.spawn = function(pattern, x, y) {
+        for (var i = 0; i < pattern.length; i++) {
+            for (var j = 0; j < pattern[i].length; j++) {
+                var xPos = wrapValue(x + i, 0, width);
+                var yPos = wrapValue(y + j, 0, height);
+                grid[xPos][yPos].setState(pattern[i][j]);
+            }
         }
     }
 
