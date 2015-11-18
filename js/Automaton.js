@@ -1,5 +1,7 @@
 function Automaton(width, height) {
-    var Cell = require('../js/Cell.js');
+    if (typeof require !== 'undefined') {
+        Cell = require('../js/Cell.js');
+    }
 
     var self = this;
     var grid;
@@ -66,4 +68,6 @@ function Automaton(width, height) {
     this.initialise(width, height);
 };
 
-module.exports = Automaton;
+if (typeof module !== 'undefined') {
+    module.exports = Automaton;
+}

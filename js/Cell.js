@@ -1,5 +1,7 @@
 function Cell() {
-    var ConwayRules = require('../js/ConwayRules.js');
+    if (typeof require !== 'undefined') {
+        ConwayRules = require('../js/ConwayRules.js');
+    }
 
     var self = this;
     var isAlive = false;
@@ -45,4 +47,6 @@ function Cell() {
     }
 }
 
-module.exports = Cell;
+if (typeof module !== 'undefined') {
+    module.exports = Cell;
+}

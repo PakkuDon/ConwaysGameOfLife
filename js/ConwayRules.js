@@ -17,4 +17,6 @@ var ConwayRules = {
     }
 }
 
-module.exports = ConwayRules;
+if (typeof module !== 'undefined') {
+    module.exports = ConwayRules;
+}
