@@ -1,10 +1,9 @@
-function Cell(neighbourCells) {
+function Cell() {
     var ConwayRules = require('../js/ConwayRules.js');
 
     var self = this;
     var isAlive = false;
-    var neighbours = typeof neighbourCells === 'undefined' 
-        ? [] : neighbourCells;
+    var neighbours;
     var nextState;
 
     this.isAlive = function() {
@@ -13,6 +12,14 @@ function Cell(neighbourCells) {
 
     this.setState = function(state) {
         isAlive = state;
+    }
+
+    // Assigns array of cells neighbouring this cell
+    // Can only be invoked once. Future calls will do nothing
+    this.setNeighbours = function(neighbourCells) {
+        // Override function so it can't be executed again
+        self.setNeighbours = function() {};
+        neighbours = neighbourCells;
     }
     
     // Determine cell's state in next generation based on current state

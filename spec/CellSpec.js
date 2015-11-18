@@ -8,7 +8,8 @@ describe('Cell', function() {
         for (var i = 0; i < 8; i++) {
             neighbours.push(new Cell());
         }
-        cell = new Cell(neighbours);
+        cell = new Cell();
+        cell.setNeighbours(neighbours);
     });
 
     it('is dead by default', function() {
@@ -19,6 +20,22 @@ describe('Cell', function() {
         neighbours[0].setState(true);
         neighbours[1].setState(true);
         expect(cell.countLiveNeighbours()).toEqual(2);
+    });
+
+    it('can only be assigned a set of neighbour cells once', function() {
+        // Modify existing neighbours
+        neighbours[0].setState(true);
+        var previousCount = cell.countLiveNeighbours();
+        expect(cell.countLiveNeighbours()).toEqual(1);
+
+        // Attempt to re-assign new neighbour set
+        var arr = [
+            new Cell()
+        ];
+        cell.setNeighbours(arr);
+
+        // Confirm that previous neighbours remain unchanged
+        expect(cell.countLiveNeighbours()).toEqual(previousCount);
     });
 
     // Test compliance to rules defined in Conway's Game of Life
