@@ -1,7 +1,9 @@
 function Automaton(width, height) {
+    // If executing in Node.js environment, include modules
     if (typeof require !== 'undefined') {
         Cell = require('../js/Cell.js');
         Patterns = require('../js/Patterns.js');
+        MathExtensions = require('../js/MathExtensions.js');
     }
 
     var self = this;
@@ -42,9 +44,9 @@ function Automaton(width, height) {
     function getAdjacentCells(grid, x, y) {
         var neighbours = [];
         for (var i = -1; i <= 1; i++) {
-            var xPos = wrapValue(x + i, 0, width - 1);
+            var xPos = MathExtensions.wrapValue(x + i, 0, width - 1);
             for (var j = -1; j <= 1; j++) {
-                var yPos = wrapValue(y + j, 0, height - 1);
+                var yPos = MathExtensions.wrapValue(y + j, 0, height - 1);
                 if (!(xPos === x && yPos === y)) {
                     neighbours.push(grid[xPos][yPos]);
                 }
@@ -53,25 +55,14 @@ function Automaton(width, height) {
         return neighbours;
     }
 
-    // Return value between given min and max
-    // If value exceeds either boundaries, return opposite boundary value
-    // ie (value > max ? min : value)
-    function wrapValue(value, min, max) {
-        if (value >= min && value <= max) {
-            return value;
-        }
-        else {
-            return value < min ? max : min;
-        }
-    }
 
     // Update cells over an area starting from given x,y to match
     // state defined in pattern
     this.spawn = function(pattern, x, y) {
         for (var i = 0; i < pattern.length; i++) {
             for (var j = 0; j < pattern[i].length; j++) {
-                var xPos = wrapValue(x + i, 0, width);
-                var yPos = wrapValue(y + j, 0, height);
+                var xPos = MathExtensions.wrapValue(x + i, 0, width);
+                var yPos = MathExtensions.wrapValue(y + j, 0, height);
                 grid[xPos][yPos].setState(pattern[i][j]);
             }
         }
