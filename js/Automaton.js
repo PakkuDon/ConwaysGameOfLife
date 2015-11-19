@@ -68,6 +68,24 @@ function Automaton(width, height) {
         }
     }
 
+    // Determine state of cells in next generation
+    this.update = function() {
+        // Calculate next state for each cell
+        for (var x = 0; x < width; x++) {
+            for (var y = 0; y < height; y++) {
+                grid[x][y].processNextState();
+            }
+        }
+
+        // Move each cell to their next state
+        for (var x = 0; x < width; x++) {
+            for (var y = 0; y < height; y++) {
+                grid[x][y].update();
+            }
+        }
+
+    }
+
     // Initialize model
     this.initialise(width, height);
 };
