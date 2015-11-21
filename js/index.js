@@ -1,5 +1,5 @@
 window.addEventListener('load', function() {
-    var automaton = new Automaton(60, 80);
+    var automaton = new Automaton(200, 240);
     var graphics = new Graphics(document.querySelector('canvas'));
 
     var delay = 100;
