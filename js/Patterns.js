@@ -10,17 +10,18 @@ var Patterns = {
     },
     beehive : function() {
         return [
-            [false, true, true, false],
-            [true, false, false, true],
-            [false, true, true, false]
+            [false, true, false],
+            [true, false, true],
+            [true, false, true],
+            [false, true, false]
         ];
     },
     loaf : function() {
         return [
-            [false, true, true, false],
+            [false, true, false, false],
+            [true, false, true, false],
             [true, false, false, true],
-            [false, true, false, true],
-            [false, false, true, false]
+            [false, true, true, false]
         ];
     },
     boat : function() {
@@ -39,8 +40,10 @@ var Patterns = {
     },
     toad : function() {
         return [
-            [false, true, true, true],
-            [true, true, true, false]
+            [false, true],
+            [true, true],
+            [true, true],
+            [true, false]
         ];
     },
     beacon : function() {
@@ -54,52 +57,42 @@ var Patterns = {
     // !-- In hindsight I probably should have stored these at ints instead
     pulsar : function() {
         return [
-            [false, false, false, false, true, false, false, false, false, false, true, false, false, false, false],
-            [false, false, false, false, true, false, false, false, false, false, true, false, false, false, false],
-            [false, false, false, false, true, true, false, false, false, true, true, false, false, false, false],
-            [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-            [true, true, true, false, false, true, true, false, true, true, false, false, true, true, true],
-            [false, false, true, false, true, false, true, false, true, false, true, false, true, false, false],
-            [false, false, false, false, true, true, false, false, false, true, true, false, false, false, false],
-            [false, false, false, false, true, true, false, false, false, true, true, false, false, false, false],
-            [false, false, false, false, true, true, false, false, false, true, true, false, false, false, false],
-            [false, false, true, false, true, false, true, false, true, false, true, false, true, false, false],
-            [true, true, true, false, false, true, true, false, true, true, false, false, true, true, true],
-            [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-            [false, false, false, false, true, true, false, false, false, true, true, false, false, false, false],
-            [false, false, false, false, true, false, false, false, false, false, true, false, false, false, false],
-            [false, false, false, false, true, false, false, false, false, false, true, false, false, false, false]
+            [false, false, true, true, true, false, false, false, true, true, true, false],
+            [false, false, false, false, false, false, false, false, false, false, false, false],
+            [true, false, false, false, false, true, false, true, false, false, false, false, true],
+            [true, false, false, false, false, true, false, true, false, false, false, false, true],
+            [true, false, false, false, false, true, false, true, false, false, false, false, true],
+            [false, false, true, true, true, false, false, false, true, true, true, false],
+            [false, false, false, false, false, false, false, false, false, false, false, false],
+            [false, false, true, true, true, false, false, false, true, true, true, false],
+            [true, false, false, false, false, true, false, true, false, false, false, false, true],
+            [true, false, false, false, false, true, false, true, false, false, false, false, true],
+            [true, false, false, false, false, true, false, true, false, false, false, false, true],
+            [false, false, false, false, false, false, false, false, false, false, false, false],
+            [false, false, true, true, true, false, false, false, true, true, true, false]
         ];
     },
     pentadecathlon : function() {
         return [
-            [false, true, true, true, false],
-            [true, false, false, false, true],
-            [true, false, false, false, true],
-            [false, true, true, true, false],
-            [false, false, false, false, false],
-            [false, false, false, false, false],
-            [false, false, false, false, false],
-            [false, false, false, false, false],
-            [false, true, true, true, false],
-            [true, false, false, false, true],
-            [true, false, false, false, true],
-            [false, true, true, true, false],
+            [true, true, true, true, true, true, true, true],
+            [true, false, true, true, true, true, false, true],
+            [true, true, true, true, true, true, true, true]
         ];
     },
     glider : function() {
         return [
-            [true, false, false],
-            [false, true, true],
-            [true, true, false]
+            [false, true, false],
+            [false, false, true],
+            [true, true, true]
         ];
     },
     lightweightSpaceship : function() {
         return [
-            [false, true, true, true, true],
-            [true, false, false, false, true],
-            [false, false, false, false, true],
-            [true, false, false, true, false]
+            [true, false, true, false],
+            [false, false, false, true],
+            [false, false, false, true],
+            [true, false, false, true],
+            [false, true, true, true]
         ];
     }
 };
