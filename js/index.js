@@ -1,4 +1,8 @@
 window.addEventListener('load', function() {
+    // Input fields
+    var txtWidth = document.querySelector('#width');
+    var txtHeight = document.querySelector('#height');
+
     var automaton = new Automaton(200, 240);
     var graphics = new Graphics(document.querySelector('canvas'));
 
@@ -11,4 +15,14 @@ window.addEventListener('load', function() {
         automaton.update();
         graphics.draw(automaton.getGrid());
     }, delay);
+
+    // Reset and set size of automaton on submit
+    document.querySelector('#dimensions-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var width = parseInt(txtWidth.value);
+        var height = parseInt(txtHeight.value);
+        
+        automaton.initialise(width, height);
+    });
 });

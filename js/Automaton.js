@@ -1,4 +1,4 @@
-function Automaton(width, height) {
+function Automaton(initialWidth, initialHeight) {
     // If executing in Node.js environment, include modules
     if (typeof require !== 'undefined') {
         Cell = require('../js/Cell.js');
@@ -6,33 +6,44 @@ function Automaton(width, height) {
         MathExtensions = require('../js/MathExtensions.js');
     }
 
+    var width;
+    var height;
     var self = this;
     var grid;
+
+    // Accessors
+    this.getWidth = function() {
+        return width;
+    }
+
+    this.getHeight = function() {
+        return height;
+    }
 
     this.getGrid = function() {
         return grid;
     }
 
     // Initialize values
-    this.initialise = function(width, height) {
-        self.width = width;
-        self.height = height;
-        grid = createGrid(width, height);
+    this.initialise = function(gridWidth, gridHeight) {
+        width = gridWidth;
+        height = gridHeight;
+        grid = createGrid(gridWidth, gridHeight);
     }
 
     // Construct default grid with given dimensions
-    function createGrid(width, height) {
+    function createGrid(gridWidth, gridHeight) {
         var arr = [];
-        for (var x = 0; x < width; x++) {
+        for (var x = 0; x < gridWidth; x++) {
             arr.push([]);
-            for (var y = 0; y < height; y++) {
+            for (var y = 0; y < gridHeight; y++) {
                 arr[x].push(new Cell());
             }
         }
 
         // Assign neighbours to each cell object
-        for (var x = 0; x < width; x++) {
-            for (var y = 0; y < height; y++) {
+        for (var x = 0; x < gridWidth; x++) {
+            for (var y = 0; y < gridHeight; y++) {
                 var cell = arr[x][y];
                 cell.setNeighbours(getAdjacentCells(arr, x, y));
             }
@@ -87,7 +98,7 @@ function Automaton(width, height) {
     }
 
     // Initialize model
-    this.initialise(width, height);
+    this.initialise(initialWidth, initialHeight);
 };
 
 if (typeof module !== 'undefined') {

@@ -11,8 +11,8 @@ describe('Automaton', function() {
     });
 
     it('can be created with a given width and height', function() {
-        expect(automaton.width).toEqual(WIDTH);
-        expect(automaton.height).toEqual(HEIGHT);
+        expect(automaton.getWidth()).toEqual(WIDTH);
+        expect(automaton.getHeight()).toEqual(HEIGHT);
         // Check grid dimensions
         expect(automaton.getGrid().length).toEqual(WIDTH);
         expect(automaton.getGrid()[0].length).toEqual(HEIGHT);
