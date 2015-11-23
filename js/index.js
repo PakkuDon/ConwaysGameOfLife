@@ -25,4 +25,9 @@ window.addEventListener('load', function() {
         
         automaton.initialise(width, height);
     });
+
+    // Reset grid state
+    document.querySelector('#reset').addEventListener('click', function() {
+        automaton.initialise(automaton.getWidth(), automaton.getHeight());
+    });
 });
