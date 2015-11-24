@@ -2,6 +2,10 @@
 // Patterns are defined as a 2D array of boolean values where 
 // true represents a live cell
 var Patterns = {
+    // Allow users to draw individual cells
+    cell : function() {
+        return [[true]];
+    },
     block : function() {
         return [
             [true, true],

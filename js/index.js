@@ -1,11 +1,13 @@
 window.addEventListener('load', function() {
-    // Input fields
+    // Frequently used elements
     var txtWidth = document.querySelector('#width');
     var txtHeight = document.querySelector('#height');
+    var lstBrush = document.querySelector('#brush');
     var btnToggleState = document.querySelector('#toggle-running');
+    var canvas = document.querySelector('canvas');
 
     var automaton = new Automaton(200, 240);
-    var graphics = new Graphics(document.querySelector('canvas'));
+    var graphics = new Graphics(canvas);
 
     var delay = 100;
     automaton.spawn(Patterns.pentadecathlon(), 40, 40);
@@ -16,6 +18,31 @@ window.addEventListener('load', function() {
     intervalID = setInterval(function() {
         update();
     }, delay);
+
+    // Add pre-defined structures to list of available brushes
+    var patterns = Object.keys(Patterns);
+    for (var i = 0; i < patterns.length; i++) {
+        var opt = document.createElement('option');
+        opt.value = patterns[i];
+        opt.innerHTML = patterns[i];
+        lstBrush.appendChild(opt);
+    }
+
+    // Draw selected structure on canvas on-click
+    canvas.addEventListener('click', function(e) {
+        // Translate click coordinates to coordinate in automaton's grid
+        var clickX = Math.round((e.x / canvas.clientWidth) 
+            * automaton.getWidth());
+        var clickY = Math.round((e.y / canvas.clientHeight) 
+            * automaton.getHeight());
+
+        // Spawn selected structure and redraw canvas
+        // TODO: Display error message if corresponding value not found
+        if (Patterns.hasOwnProperty(lstBrush.value)) {
+            automaton.spawn(Patterns[lstBrush.value](), clickX, clickY);
+            graphics.draw(automaton.getGrid());
+        }
+    });
 
     // Reset and set size of automaton on submit
     document.querySelector('#dimensions-form').addEventListener('submit', function(e) {
