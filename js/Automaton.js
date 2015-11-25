@@ -55,9 +55,9 @@ function Automaton(initialWidth, initialHeight) {
     function getAdjacentCells(grid, x, y) {
         var neighbours = [];
         for (var i = -1; i <= 1; i++) {
-            var xPos = MathExtensions.wrapValue(x + i, 0, width - 1);
+            var xPos = MathExtensions.wrapValue(x + i, 0, width);
             for (var j = -1; j <= 1; j++) {
-                var yPos = MathExtensions.wrapValue(y + j, 0, height - 1);
+                var yPos = MathExtensions.wrapValue(y + j, 0, height);
                 if (!(xPos === x && yPos === y)) {
                     neighbours.push(grid[xPos][yPos]);
                 }

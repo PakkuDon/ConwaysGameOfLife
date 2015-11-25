@@ -33,11 +33,11 @@ canvas {
 }
 
 #toggle-sidebar ~ label[for=toggle-sidebar]:before {
-    content: '\25BA;'
+    content: '\25BA'
 }
 
 #toggle-sidebar:checked ~ label[for=toggle-sidebar]:before {
-    content: '\25C4;'
+    content: '\25C4'
 }
 
 #toggle-sidebar:checked ~ #sidebar {
