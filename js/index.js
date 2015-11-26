@@ -6,12 +6,13 @@ window.addEventListener('load', function() {
     var txtBgColor = document.querySelector('#bg-color');
     var lstBrush = document.querySelector('#brush');
     var btnToggleState = document.querySelector('#toggle-running');
+    var rngIntervalSpeed = document.querySelector('#interval-speed');
     var canvas = document.querySelector('canvas');
 
     var automaton = new Automaton(200, 240);
     var graphics = new Graphics(canvas, txtFgColor.value, txtBgColor.value);
 
-    var delay = 100;
+    var delay = rngIntervalSpeed.value;
     automaton.spawn(Patterns.pentadecathlon(), 40, 40);
     graphics.draw(automaton.getGrid());
 
@@ -87,6 +88,17 @@ window.addEventListener('load', function() {
     txtBgColor.addEventListener('change', function() {
         graphics.setBackground(txtBgColor.value);
         graphics.draw(automaton.getGrid());
+    });
+
+    // Set delay between updates
+    rngIntervalSpeed.addEventListener('change', function() {
+        delay = rngIntervalSpeed.value;
+        if (typeof intervalID !== 'undefined') {
+            clearInterval(intervalID);
+            intervalID = setInterval(function() {
+                update();
+            }, delay);
+        }
     });
 
     // Create automaton's next generation 
