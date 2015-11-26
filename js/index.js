@@ -2,12 +2,14 @@ window.addEventListener('load', function() {
     // Frequently used elements
     var txtWidth = document.querySelector('#width');
     var txtHeight = document.querySelector('#height');
+    var txtFgColor = document.querySelector('#fg-color');
+    var txtBgColor = document.querySelector('#bg-color');
     var lstBrush = document.querySelector('#brush');
     var btnToggleState = document.querySelector('#toggle-running');
     var canvas = document.querySelector('canvas');
 
     var automaton = new Automaton(200, 240);
-    var graphics = new Graphics(canvas);
+    var graphics = new Graphics(canvas, txtFgColor.value, txtBgColor.value);
 
     var delay = 100;
     automaton.spawn(Patterns.pentadecathlon(), 40, 40);
@@ -74,6 +76,17 @@ window.addEventListener('load', function() {
     // Reset grid state
     document.querySelector('#reset').addEventListener('click', function() {
         automaton.initialise(automaton.getWidth(), automaton.getHeight());
+    });
+
+    // Set foreground/background colours and redraw
+    txtFgColor.addEventListener('change', function() {
+        graphics.setForeground(txtFgColor.value);
+        graphics.draw(automaton.getGrid());
+    });
+
+    txtBgColor.addEventListener('change', function() {
+        graphics.setBackground(txtBgColor.value);
+        graphics.draw(automaton.getGrid());
     });
 
     // Create automaton's next generation 
