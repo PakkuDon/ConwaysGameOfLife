@@ -9,14 +9,13 @@ window.addEventListener('load', function() {
     var rngIntervalSpeed = document.querySelector('#interval-speed');
     var canvas = document.querySelector('canvas');
 
-    var automaton = new Automaton(200, 240);
+    var automaton = new Automaton(txtWidth.value, txtHeight.value);
     var graphics = new Graphics(canvas, txtFgColor.value, txtBgColor.value);
 
     var delay = rngIntervalSpeed.value;
-    automaton.spawn(Patterns.pentadecathlon(), 40, 40);
     graphics.draw(automaton.getGrid());
 
-    // Test draw method
+    // Start automaton
     var intervalID;
     intervalID = setInterval(function() {
         update();
