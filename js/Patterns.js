@@ -98,6 +98,36 @@ var Patterns = {
             [true, false, false, true],
             [false, true, true, true]
         ];
+    },
+    rPentomino : function() {
+        return [
+            [false, true, false],
+            [true, true, true],
+            [true, false, false]
+        ];
+    },
+    diehard : function() {
+        return [
+            [false, true, false],
+            [false, true, true],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, true],
+            [true, false, true],
+            [false, false, true]
+        ];
+    },
+    acorn : function() {
+        return [
+            [false, false, true],
+            [true, false, true],
+            [false, false, false],
+            [false, true, false],
+            [false, false, true],
+            [false, false, true],
+            [false, false, true]
+        ];
     }
 };
 
