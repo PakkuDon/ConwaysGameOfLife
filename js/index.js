@@ -33,9 +33,9 @@ window.addEventListener('load', function() {
     // Draw selected structure on canvas on-click
     canvas.addEventListener('click', function(e) {
         // Translate click coordinates to coordinate in automaton's grid
-        var clickX = Math.round((e.x / canvas.clientWidth) 
+        var clickX = Math.floor((e.x / canvas.clientWidth) 
             * automaton.getWidth());
-        var clickY = Math.round((e.y / canvas.clientHeight) 
+        var clickY = Math.floor((e.y / canvas.clientHeight) 
             * automaton.getHeight());
 
         // Spawn selected structure and redraw canvas
@@ -76,6 +76,7 @@ window.addEventListener('load', function() {
     // Reset grid state
     document.querySelector('#reset').addEventListener('click', function() {
         automaton.initialise(automaton.getWidth(), automaton.getHeight());
+        graphics.draw(automaton.getGrid());
     });
 
     // Set foreground/background colours and redraw
