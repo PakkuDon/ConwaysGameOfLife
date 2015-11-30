@@ -3,48 +3,48 @@ function Cell() {
         ConwayRules = require('../js/ConwayRules.js');
     }
 
-    var self = this;
-    var isAlive = false;
-    var neighbours;
-    var nextState;
-
-    this.isAlive = function() {
-        return isAlive;
-    }
-
-    this.setState = function(state) {
-        isAlive = state;
-    }
+    this.alive = false;
+    this.neighbours;
+    this.nextState;
 
     // Assigns array of cells neighbouring this cell
     // Can only be invoked once. Future calls will do nothing
     this.setNeighbours = function(neighbourCells) {
         // Override function so it can't be executed again
-        self.setNeighbours = function() {};
-        neighbours = neighbourCells;
+        this.setNeighbours = function() {};
+        this.neighbours = neighbourCells;
     }
-    
-    // Determine cell's state in next generation based on current state
-    this.processNextState = function() {
-        nextState = ConwayRules.isAliveInNextGeneration(
-            isAlive, self.countLiveNeighbours());
-    }
+}
 
-    // Return number of living neighbours
-    this.countLiveNeighbours = function() {
-        var count = 0;
-        for (var i = 0; i < neighbours.length; i++) {
-            if (neighbours[i].isAlive()) {
-                count++;
-            }
+Cell.prototype.isAlive = function() {
+    return this.alive;
+}
+
+Cell.prototype.setState = function(state) {
+    this.alive = state;
+}
+
+
+// Determine cell's state in next generation based on current state
+Cell.prototype.processNextState = function() {
+    this.nextState = ConwayRules.isAliveInNextGeneration(
+        this.alive, this.countLiveNeighbours());
+}
+
+// Return number of living neighbours
+Cell.prototype.countLiveNeighbours = function() {
+    var count = 0;
+    for (var i = 0; i < this.neighbours.length; i++) {
+        if (this.neighbours[i].isAlive()) {
+            count++;
         }
-        return count;
     }
+    return count;
+}
 
-    // Set current state to next state determined by processNextState()
-    this.update = function() {
-        isAlive = nextState;
-    }
+// Set current state to next state determined by processNextState()
+Cell.prototype.update = function() {
+    this.alive = this.nextState;
 }
 
 if (typeof module !== 'undefined') {
